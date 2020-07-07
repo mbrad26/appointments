@@ -79,6 +79,18 @@ describe('Appointment', () => {
 
     expect(appointmentTable().textContent).toMatch('Beard-Cut');
   });
+
+  it('renders appointment notes', () => {
+    render(<Appointment customer={customer} notes='some notes' />);
+
+    expect(appointmentTable().textContent).toMatch('some notes');
+  });
+
+  it('renders another appointment notes', () => {
+    render(<Appointment customer={customer} notes='some other notes' />);
+
+    expect(appointmentTable().textContent).toMatch('some other notes');
+  });
 });
 
 describe('AppointmentsDayView', () => {
