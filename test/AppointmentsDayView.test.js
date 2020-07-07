@@ -91,6 +91,17 @@ describe('Appointment', () => {
 
     expect(appointmentTable().textContent).toMatch('some other notes');
   });
+
+  it('renders the start of the appointment', () => {
+    const today = new Date();
+    const timeStamp = today.setHours(9, 0, 0);
+    render(<Appointment customer={customer} startsAt={timeStamp}/>);
+
+    expect(container.querySelector('h3')).not.toBeNull();
+    expect(container.querySelector('h3').textContent).toMatch(
+      'Today’s appointment at 09:00'
+    );
+  });
 });
 
 describe('AppointmentsDayView', () => {
