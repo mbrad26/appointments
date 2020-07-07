@@ -55,6 +55,18 @@ describe('Appointment', () => {
 
     expect(appointmentTable().textContent).toMatch('07775688823');
   });
+
+  it('renders the stylist name', () => {
+    render(<Appointment customer={customer} stylist={'Sam'}/>);
+
+    expect(appointmentTable().textContent).toMatch('Sam');
+  });
+
+  it('renders another stylist name', () => {
+    render(<Appointment customer={customer} stylist={'Jo'} />);
+
+    expect(appointmentTable().textContent).toMatch('Jo');
+  });
 });
 
 describe('AppointmentsDayView', () => {
