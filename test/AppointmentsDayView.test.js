@@ -67,6 +67,18 @@ describe('Appointment', () => {
 
     expect(appointmentTable().textContent).toMatch('Jo');
   });
+
+  it('renders the salon service', () => {
+    render(<Appointment customer={customer} service='Trim' />);
+
+    expect(appointmentTable().textContent).toMatch('Trim');
+  });
+
+  it('renders another salon service', () => {
+    render(<Appointment customer={customer} service='Beard-Cut'/>);
+
+    expect(appointmentTable().textContent).toMatch('Beard-Cut');
+  });
 });
 
 describe('AppointmentsDayView', () => {
