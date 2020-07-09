@@ -15,11 +15,6 @@ describe('CustomerForm', () => {
   const labelFor = formElement =>
     container.querySelector(`label[for="${formElement}"]`);
 
-  it('renders a form', () => {
-    render(<CustomerForm />);
-    expect(form('customer')).not.toBeNull();
-  });
-
   const expectToBeInputFieldOfTypeText = formElement => {
     expect(formElement).not.toBeNull();
     expect(formElement.tagName).toEqual('INPUT');
@@ -81,6 +76,18 @@ describe('CustomerForm', () => {
       });
       await ReactTestUtils.Simulate.submit(form('customer'));
     });
+
+  it('renders a form', () => {
+    render(<CustomerForm />);
+    expect(form('customer')).not.toBeNull();
+  });
+
+  it('has a submit button', () => {
+    render(<CustomerForm />);
+    const submitButton = container.querySelector('input[type="submit"]');
+
+    expect(submitButton).not.toBeNull();
+  });
 
   describe('first name field', () => {
     itRendersAsATextBox('firstName');

@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 
-export const CustomerForm = ({
-  firstName,
-  lastName,
-  phoneNumber,
-  onSubmit
-}) => {
+export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit}) => {
   const [customer, setCustomer] = useState({
     firstName,
     lastName,
@@ -58,6 +53,8 @@ export const CustomerForm = ({
         value={phoneNumber}
         onChange={handleChangePhoneNumber}
       />
+
+      <input type="submit" value="Add"/>
     </form>
   );
 };
