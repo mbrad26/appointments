@@ -10,17 +10,16 @@ describe('Appointment', () => {
   let container;
   let customer = {};
 
+  beforeEach(() => {
+    container = document.createElement('div');
+  });
+
   const render = component => {
     ReactDom.render(component, container);
   };
 
   const appointmentTable = () =>
     container.querySelector('#appointmentView > table');
-
-  beforeEach(() => {
-    container = document.createElement('div');
-  });
-
 
   it('renders a table', () => {
     render(<Appointment customer={customer} />)
@@ -107,6 +106,10 @@ describe('Appointment', () => {
 describe('AppointmentsDayView', () => {
     let container;
 
+    beforeEach(() => {
+      container = document.createElement('div');
+    });
+
     const render = component => {
       ReactDom.render(component, container);
     };
@@ -121,10 +124,6 @@ describe('AppointmentsDayView', () => {
         customer: { firstName: 'Jordan' }
       }
     ];
-
-    beforeEach(() => {
-      container = document.createElement('div');
-    });
 
     it('renders a div with the right id', () => {
       render(<AppointmentsDayView appointments={ [] }/>);
