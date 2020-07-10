@@ -3,6 +3,8 @@ import React from 'react';
 
 export const AppointmentForm = () => (
   <form id='appointment'>
-    <select name='service' />
+    <select name='service'>
+      <option />
+    </select>
   </form>
 );

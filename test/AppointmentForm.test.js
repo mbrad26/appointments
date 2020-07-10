@@ -23,5 +23,12 @@ describe('AppointmentForm', () => {
       expect(container.querySelector('form[id="appointment"]').elements.service).not.toBeNull();
       expect(container.querySelector('form[id="appointment"]').elements.service.tagName).toEqual('SELECT');
     });
+
+    it('initially has a blank value chosen', () => {
+      render(<AppointmentForm />);
+
+      expect(container.querySelector('form[id="appointment"]').elements.service.childNodes[0].value).toEqual('')
+      expect(container.querySelector('form[id="appointment"]').elements.service.childNodes[0].selected).toBeTruthy();
+    });
   });
 });
