@@ -15,4 +15,13 @@ describe('AppointmentForm', () => {
 
     expect(container.querySelector('form[id="appointment"]')).not.toBeNull();
   });
+
+  describe('service field', () => {
+    it('renders as a select box', () => {
+      render(<AppointmentForm />);
+
+      expect(container.querySelector('form[id="appointment"]').elements.service).not.toBeNull();
+      expect(container.querySelector('form[id="appointment"]').elements.service.tagName).toEqual('SELECT');
+    });
+  });
 });
