@@ -1,6 +1,7 @@
 import React from 'react';
 import { createContainer } from './domManipulators';
 import { AppointmentForm } from '../src/AppointmentForm';
+import ReactTestUtils from 'react-dom/test-utils';
 
 describe('AppointmentForm', () => {
   let render;
@@ -64,6 +65,23 @@ describe('AppointmentForm', () => {
 
       expect(container.querySelector('label[for="service"]')).not.toBeNull();
       expect(container.querySelector('label[for="service"]').textContent).toEqual('Salon service');
+    });
+
+    it('assigns an id that matches the label id', () => {
+      render(<AppointmentForm />);
+
+      expect(field('service').id).toEqual('service');
+    });
+
+    it('saves existing value when submitted', async () => {
+      expect.hasAssertions();
+      render(<AppointmentForm
+          service='Blow-dry'
+          onSubmit={({ service }) => expect(service).toEqual('Blow-dry')}
+        />
+      );
+
+      await ReactTestUtils.Simulate.submit(form('appointment'));
     });
   });
 });
