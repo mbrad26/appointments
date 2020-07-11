@@ -4,6 +4,9 @@ import React, { useState } from 'react';
 export const AppointmentForm = ({ selectableServices, service, onSubmit }) => {
   const [appointment, setAppointment] = useState({ service })
 
+  const handleServiceChange = ({ target: { value } }) =>
+    setAppointment(appointment => ({...appointment, service: value}));
+
   return (
     <form id='appointment' onSubmit={() => onSubmit(appointment)}>
       <label htmlFor='service'>Salon service</label>
@@ -11,7 +14,8 @@ export const AppointmentForm = ({ selectableServices, service, onSubmit }) => {
         id='service'
         name='service'
         value={service}
-        readOnly>
+        onChange={handleServiceChange}
+        >
         <option />
           {selectableServices.map(s => (
             <option key={s}>{s}</option>
