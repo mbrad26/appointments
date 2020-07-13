@@ -1,11 +1,28 @@
 import React, { useState } from 'react';
 
-export const CustomerForm = ({firstName, lastName, phoneNumber, onSave}) => {
+const Error = () => (
+  <div className="error">An error occurred during save.</div>
+);
+
+export const CustomerForm = ({
+  firstName,
+  lastName,
+  phoneNumber,
+  onSave
+}) => {
+  const [error, setError] = useState(false);
+
   const [customer, setCustomer] = useState({
     firstName,
     lastName,
     phoneNumber
   });
+
+  const handleChange = ({ target }) =>
+    setCustomer(customer => ({
+      ...customer,
+      [target.name]: target.value
+    }));
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -18,36 +35,21 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSave}) => {
     if (result.ok) {
       const customerWithId = await result.json();
       onSave(customerWithId);
+    } else {
+      setError(true);
     }
   };
 
-  const handleChangeFirstName = ({ target }) =>
-    setCustomer(customer => ({
-      ...customer,
-      firstName: target.value
-    }));
-
-  const handleChangeLastName = ({ target }) =>
-    setCustomer(customer => ({
-      ...customer,
-      lastName: target.value
-    }));
-
-  const handleChangePhoneNumber = ({ target }) =>
-    setCustomer(customer => ({
-      ...customer,
-      phoneNumber: target.value
-    }));
-
   return (
     <form id="customer" onSubmit={handleSubmit}>
+      {error ? <Error /> : null}
       <label htmlFor="firstName">First name</label>
       <input
         type="text"
         name="firstName"
         id="firstName"
         value={firstName}
-        onChange={handleChangeFirstName}
+        onChange={handleChange}
       />
 
       <label htmlFor="lastName">Last name</label>
@@ -56,7 +58,7 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSave}) => {
         name="lastName"
         id="lastName"
         value={lastName}
-        onChange={handleChangeLastName}
+        onChange={handleChange}
       />
 
       <label htmlFor="phoneNumber">Phone number</label>
@@ -65,10 +67,10 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSave}) => {
         name="phoneNumber"
         id="phoneNumber"
         value={phoneNumber}
-        onChange={handleChangePhoneNumber}
+        onChange={handleChange}
       />
 
-      <input type="submit" value="Add"/>
+      <input type="submit" value="Add" />
     </form>
   );
 };
