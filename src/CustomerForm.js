@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit, fetch}) => {
+export const CustomerForm = ({firstName, lastName, phoneNumber, fetch}) => {
   const [customer, setCustomer] = useState({
     firstName,
     lastName,
@@ -8,11 +8,12 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSubmit, fetch}
   });
 
   const handleSubmit = () => {
-    onSubmit(customer);
+    // onSubmit(customer);
     fetch('/customers', {
       method: 'POST',
       credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(customer)
     });
   };
 
