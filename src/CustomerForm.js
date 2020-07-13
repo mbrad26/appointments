@@ -14,8 +14,10 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSave}) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(customer)
     });
-    const customerWithId = await result.json();
-    onSave(customerWithId);
+    if (result.ok) {
+      const customerWithId = await result.json();
+      onSave(customerWithId);
+    }
   };
 
   const handleChangeFirstName = ({ target }) =>
