@@ -7,7 +7,8 @@ export const CustomerForm = ({firstName, lastName, phoneNumber, onSave}) => {
     phoneNumber
   });
 
-  const handleSubmit = async () => {
+  const handleSubmit = async e => {
+    e.preventDefault();
     const result = await window.fetch('/customers', {
       method: 'POST',
       credentials: 'same-origin',
