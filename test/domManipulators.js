@@ -27,17 +27,18 @@ export const createContainer = () => {
   const children = element => Array.from(element.childNodes);
 
   return {
-    render: component => ReactDOM.render(component, container),
-    container,
-    form,
-    field,
-    labelFor,
-    element,
-    elements,
-    children,
-    click: simulateEvent('click'),
-    change: simulateEvent('change'),
-    submit: simulateEventAndWait('submit')
+    render: component =>
+      act(() => {ReactDOM.render(component, container)}),
+      container,
+      form,
+      field,
+      labelFor,
+      element,
+      elements,
+      children,
+      click: simulateEvent('click'),
+      change: simulateEvent('change'),
+      submit: simulateEventAndWait('submit')
   };
 };
 
