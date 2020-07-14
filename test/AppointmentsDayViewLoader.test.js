@@ -43,4 +43,13 @@ describe('AppointmentsDayViewLoader', () => {
       })
     );
   });
+
+  it('initially passes no data', async () => {
+    await renderAndWait(<AppointmentsDayViewLoader />);
+
+    expect(AppointmentsDayViewExports.AppointmentsDayView).toHaveBeenCalledWith(
+      { appointments: [] },
+      expect.anything()
+    );
+  });
 });
