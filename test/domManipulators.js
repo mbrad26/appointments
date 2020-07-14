@@ -28,17 +28,21 @@ export const createContainer = () => {
 
   return {
     render: component =>
-      act(() => {ReactDOM.render(component, container)}),
-      container,
-      form,
-      field,
-      labelFor,
-      element,
-      elements,
-      children,
-      click: simulateEvent('click'),
-      change: simulateEvent('change'),
-      submit: simulateEventAndWait('submit')
+      act(() => {
+        ReactDOM.render(component, container);
+      }),
+    renderAndWait: async component =>
+      await act(async () => ReactDOM.render(component, container)),
+    container,
+    form,
+    field,
+    labelFor,
+    element,
+    elements,
+    children,
+    click: simulateEvent('click'),
+    change: simulateEvent('change'),
+    submit: simulateEventAndWait('submit')
   };
 };
 
