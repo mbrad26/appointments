@@ -52,4 +52,13 @@ describe('AppointmentsDayViewLoader', () => {
       expect.anything()
     );
   });
+
+  it('displays time slots that are fetched on mount', async () => {
+    await renderAndWait(<AppointmentsDayViewLoader />);
+
+    expect(AppointmentsDayViewExports.AppointmentsDayView).toHaveBeenCalledWith(
+      { appointments },
+      expect.anything()
+    );
+  });
 });
