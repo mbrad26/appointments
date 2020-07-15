@@ -1,5 +1,24 @@
 import React from 'react';
-import { childrenOf } from './shallowHelpers';
+import { createShallowRenderer, childrenOf } from './shallowHelpers';
+
+
+const TestComponent = ({ children }) => (
+  <React.Fragment>{children}</React.Fragment>
+);
+
+describe('child', () => {
+  let render, child;
+
+  beforeEach(() => {
+    ({ render, child } = createShallowRenderer());
+  });
+
+  it('returns undefined if the child does not exist', () => {
+    render(<TestComponent />);
+
+    expect(child(0)).not.toBeDefined();
+  });
+});
 
 describe('childrenOf', () => {
   it('returns no children', () => {
