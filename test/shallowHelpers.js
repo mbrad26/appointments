@@ -4,11 +4,15 @@ export const childrenOf = element => {
   if (typeof element === 'string') {
     return [];
   }
-  if (!element.props.children) {
+  const { props: { children } } = element;
+  if (!children) {
     return [];
   }
-  if (typeof element.props.children === 'string') {
-    return [element.props.children];
+  if (typeof children === 'string') {
+    return [children];
   }
-  return element.props.children;
+  if (Array.isArray(children)) {
+    return children;
+  }
+  return [children];
 };
