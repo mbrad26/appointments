@@ -28,6 +28,18 @@ describe('elementsMatching', () => {
       <p>B</p>
     ]);
   });
+
+  it('finds indirect children', () => {
+    render(
+      <TestComponent>
+        <div>
+          <p>A</p>
+        </div>
+      </TestComponent>
+    );
+
+    expect(elementsMatching(type('p'))).toEqual([<p>A</p>]);
+  });
 });
 
 describe('child', () => {

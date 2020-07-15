@@ -1,6 +1,20 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
+const elementsMatching = (element, matcherFn) => {
+  if (matcherFn(element)) {
+    return [element];
+  }
+
+  return childrenOf(element).reduce(
+    (acc, child) => [
+      ...acc,
+      ...elementsMatching(child, matcherFn)
+    ],
+    []
+  );
+};
+
 export const createShallowRenderer = () => {
   let renderer = new ShallowRenderer();
 
@@ -11,9 +25,6 @@ export const createShallowRenderer = () => {
     child: n => childrenOf(renderer.getRenderOutput())[n]
   };
 };
-
-export const elementsMatching = (element, matcherFn) =>
-  childrenOf(element).filter(matcherFn);
 
 export const childrenOf = element => {
   if (typeof element === 'string') {
