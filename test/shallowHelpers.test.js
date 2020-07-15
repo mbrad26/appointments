@@ -12,6 +12,10 @@ describe('childrenOf', () => {
         <p>A</p>
         <p>B</p>
       </div>
-    )).toEqual([<p>A</p>, <p>B</p>])
+    )).toEqual([<p>A</p>, <p>B</p>]);
+  });
+
+  it('returns text as an array of one item', () => {
+    expect(childrenOf(<div>text</div>)).toEqual(['text']);
   });
 });
