@@ -6,6 +6,30 @@ const TestComponent = ({ children }) => (
   <React.Fragment>{children}</React.Fragment>
 );
 
+const type = typeName => element => element.type === typeName;
+
+describe('elementsMatching', () => {
+  let render, elementsMatching;
+
+  beforeEach(() => {
+    ({ render, elementsMatching } = createShallowRenderer());
+  });
+
+  it('finds multiple direct children', () => {
+    render(
+      <TestComponent>
+        <p>A</p>
+        <p>B</p>
+      </TestComponent>
+    );
+
+    expect(elementsMatching(type('p'))).toEqual([
+      <p>A</p>,
+      <p>B</p>
+    ]);
+  });
+});
+
 describe('child', () => {
   let render, child;
 

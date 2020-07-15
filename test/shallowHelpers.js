@@ -6,9 +6,14 @@ export const createShallowRenderer = () => {
 
   return {
     render: component => renderer.render(component),
+    elementsMatching: matcherFn =>
+      elementsMatching(renderer.getRenderOutput(), matcherFn),
     child: n => childrenOf(renderer.getRenderOutput())[n]
   };
 };
+
+export const elementsMatching = (element, matcherFn) =>
+  childrenOf(element).filter(matcherFn);
 
 export const childrenOf = element => {
   if (typeof element === 'string') {
