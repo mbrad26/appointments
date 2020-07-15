@@ -5,4 +5,13 @@ describe('childrenOf', () => {
   it('returns no children', () => {
     expect(childrenOf(<div />)).toEqual([]);
   });
+
+  it('returns direct children', () => {
+    expect(childrenOf(
+      <div>
+        <p>A</p>
+        <p>B</p>
+      </div>
+    )).toEqual([<p>A</p>, <p>B</p>])
+  });
 });
