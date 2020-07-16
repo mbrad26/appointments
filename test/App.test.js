@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  click,
   className,
   child,
   createShallowRenderer,
@@ -7,6 +8,7 @@ import {
 } from './shallowHelpers';
 import { App } from '../src/App';
 import { AppointmentsDayViewLoader } from '../src/AppointmentsDayViewLoader';
+import { CustomerForm } from '../src/CustomerForm';
 
 describe('App', () => {
   let render, elementMatching;
@@ -14,6 +16,11 @@ describe('App', () => {
   beforeEach(() => {
     ({ render, elementMatching } = createShallowRenderer());
   });
+
+  const beginAddingCustomerAndAppointment = () => {
+    render(<App />);
+    click(elementMatching(id('addCustomer')));
+  };
 
   it('initially shows the AppointmentsDayViewLoader', () => {
     render(<App />);
@@ -34,5 +41,11 @@ describe('App', () => {
 
     expect(button[0].type).toEqual('button');
     expect(button[0].props.children).toEqual('Add customer and appointment');
+  });
+
+  it('displays the CustomerForm when button is clicked', async () => {
+    beginAddingCustomerAndAppointment();
+
+    expect(elementMatching(type(CustomerForm))).toBeDefined();
   });
 });
