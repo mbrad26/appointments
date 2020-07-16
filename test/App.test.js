@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  className,
   child,
   createShallowRenderer,
   type
@@ -25,5 +26,13 @@ describe('App', () => {
 
     expect(child(0).type).toEqual('div');
     expect(child(0).props.className).toEqual('button-bar');
+  });
+
+  it('has a button to initiate add customer and appointment action', () => {
+    render(<App />);
+    const buttons = childrenOf(elementMatching(className('button-bar')));
+
+    expect(button[0].type).toEqual('button');
+    expect(button[0].props.children).toEqual('Add customer and appointment');
   });
 });
