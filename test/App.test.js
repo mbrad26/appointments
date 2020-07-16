@@ -48,4 +48,10 @@ describe('App', () => {
 
     expect(elementMatching(type(CustomerForm))).toBeDefined();
   });
+
+  it('hides the AppointmentsDayViewLoader when button is clicked', async () => {
+    beginAddingCustomerAndAppointment();
+
+    expect(elementMatching(type(AppointmentsDayViewLoader))).not.toBeDefined();
+  });
 });

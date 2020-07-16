@@ -14,7 +14,7 @@ export const App = () => {
       <button type='button' id='addCustomer' onClick={transitionToAddCustomer}>
         Add customer and appointment
       </button>
-      { view === 'addCustomer' ? <CustomerForm /> : null }
+      { view === 'addCustomer' ? <CustomerForm /> : <AppointmentsDayViewLoader /> }
     </div>
     <AppointmentsDayViewLoader />
   </React.Fragment>
